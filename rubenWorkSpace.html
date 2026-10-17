@@ -23,6 +23,29 @@
                 min-width: 95%;
             }
         }
+
+        #announcement-container:has(.announcement-card) #announcement-status {
+            display: none;
+        }
+
+        .announcement-dialog {
+            width: min(36rem, calc(100% - 2rem));
+            max-height: calc(100% - 2rem);
+            padding: 0;
+            border: 0;
+            border-radius: 0.75rem;
+            box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+        }
+
+        .announcement-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .announcement-card {
+            overflow-wrap: anywhere;
+            padding: 1rem 1rem 0.5rem;
+            margin: 0.5rem;
+        }
     </style>
 </head>
 
@@ -31,20 +54,69 @@
 
     </header>
     <main>
-        
-        <div class="container-lg m-4 mt-2">
-            <img src="" class="img-fluid col-lg-6 float-lg-end summary-img">
-            <div class="summary pt-3 pe-5">
-                <p>Tracy Babe Ruth provides baseball and softball for players ages 4–16, with
-                    opportunities to advance to district, regional, state, and World Series play.</p>
-                <p>Games: Legacy Fields<br>
-                    4901 N Tracy Blvd, Tracy, CA<br>
-                    Please note: Dogs are not allowed at the fields.</p>
-                <p>TBR Mailing Address<br>
-                    PO Box 1307, Tracy, CA 95378<br>
-                    Fields Hotline: (209) 831-6350</p>
+        <div class="container p-3">
+            <div class="row-lg align-items-start">
+                <img src="" class="img-fluid col-lg-6 float-lg-end summary-img">
+                <div class="summary pt-3 pe-5">
+                    <p>Tracy Babe Ruth provides baseball and softball for players ages 4–16, with
+                        opportunities to advance to district, regional, state, and World Series play.</p>
+                    <p>Games: Legacy Fields<br>
+                        4901 N Tracy Blvd, Tracy, CA<br>
+                        Please note: Dogs are not allowed at the fields.</p>
+                    <p>TBR Mailing Address<br>
+                        PO Box 1307, Tracy, CA 95378<br>
+                        Fields Hotline: (209) 831-6350</p>
+                </div>
             </div>
         </div>
+        <div id="announcement-container" class="container mt-3 py-5">
+            <div class="d-flex justify-content-between">
+                <h2 id="news-heading" class="mb-0">News and Updates</h2>
+                <button type="button" name="add-announcement" id="add-announcement"
+                    class="btn btn-primary rounded-circle flex-shrink-0 m-1" title="Add an announcement">
+                    <b class="fs-3 lh-1">+</b>
+                </button>
+            </div>
+            <p id="announcement-status" class="border rounded p-4 text-secondary bg-light">
+                No announcements yet. Check back for news and updates.
+            </p>
+            <div class="container row-lg g-4">
+                <div id="announcement-list" class="row flex-lg-nowrap overflow-x-auto pb-3">
+                    <div class="col-lg-5 card announcement-card">
+                        <h4 class="card-title">Lorem Ipsum</h4>
+                        <p class="card-text">lorem ipsum dolor sit amet consectetur adipiscing elit illum quos
+                            dignissimos et in id culpa dolor cumque quod voluptas omnis in excepturi tempore labore
+                            ducimus est et consectetur in voluptate possimus mollit velit iusto atque libero dolorum
+                            nihil dignissimos mollit temporibus minus placeat irure omnis assumenda est nostrud ut
+                            libero</p>
+                    </div>
+                </div>
+            </div>
+            <dialog id="announcement-dialog" class="announcement-dialog" aria-labelledby="announcement-dialog-title">
+                <form id="announcement-form" class="p-4">
+                    <h2 class="h4 mb-1">Add an announcement</h2>
+                    <div class="mb-3">
+                        <label for="announcement-img" class="form-label">Upload Image</label>
+                        <input id="announcement-img" name="img" class="form-control" type="file" accept="image/*">
+                    </div>
+                    <div class="mb-3">
+                        <label for="announcement-title" class="form-label">Title</label>
+                        <input id="announcement-title" name="title" class="form-control" type="text" required
+                            maxlength="120" placeholder="" autofocus>
+                    </div>
+                    <div class="mb-4">
+                        <label for="announcement-message" class="form-label">Announcement</label>
+                        <textarea id="announcement-message" name="message" class="form-control" rows="5" required
+                            maxlength="2000" placeholder=""></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <button id="cancel-announcement" type="button" class="btn btn-outline-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Post announcement</button>
+                    </div>
+                </form>
+            </dialog>
+        </div>
+
     </main>
     <footer>
 
@@ -52,6 +124,95 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script>
+        // Prototype only. Needs to be replaced once real authentication and database access have been implemented.
+        // Node.js would be good for admin validation.
+        const isAdmin = true;
+
+        const addAnnouncementButton = document.getElementById('add-announcement');
+        const announcementStatus = document.getElementById('announcement-status');
+        const announcementList = document.getElementById('announcement-list');
+        const announcementDialog = document.getElementById('announcement-dialog');
+        const announcementForm = document.getElementById('announcement-form');
+        const announcementImg = document.getElementById('announcement-img');
+        const announcementTitle = document.getElementById('announcement-title');
+        const announcementMessage = document.getElementById('announcement-message');
+
+        addAnnouncementButton.hidden = !isAdmin;
+        addAnnouncementButton.disabled = !isAdmin;
+
+        announcementForm.querySelectorAll('button[type="submit"], input, textarea').forEach(input => {
+            input.disabled = !isAdmin;
+        });
+
+        addAnnouncementButton.addEventListener('click', () => {
+            if (!isAdmin) return;
+            announcementDialog.showModal();
+        });
+
+        document.getElementById('cancel-announcement').addEventListener('click', () => {
+            announcementForm.reset();
+            announcementImg.setCustomValidity('');
+            announcementTitle.setCustomValidity('');
+            announcementMessage.setCustomValidity('');
+            announcementDialog.close();
+        });
+
+        // Prototype only. Adds announcements only as html elements to the page. They get deleted when page reloads.
+        announcementForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!isAdmin) return;
+
+            announcementTitle.setCustomValidity(announcementTitle.value.trim() === '' ? 'Please enter a title.' : '');
+            announcementMessage.setCustomValidity(announcementMessage.value.trim() === '' ? 'Please enter a message.' : '');
+
+            if (!announcementTitle.checkValidity() || !announcementMessage.checkValidity()) { return; }
+
+            const img = announcementImg.files[0];
+            const title = announcementTitle.value;
+            const message = announcementMessage.value;
+            const card = document.createElement('div');
+            card.classList.add('col-lg-5', 'card', 'announcement-card');
+
+            card.innerHTML = `
+                    <h4 class="card-title">${title}</h4>
+                    <p class="card-text">${message}</p>
+            `;
+
+            if (img) {
+                const imgElement = document.createElement('img');
+                imgElement.src = URL.createObjectURL(img);
+                card.prepend(imgElement); 
+            }
+
+            addAnnouncementDeleteButton(card);
+            announcementList.prepend(card);
+            announcementForm.reset();
+            announcementDialog.close();
+        });
+
+        function addAnnouncementDeleteButton(card) {
+            if (!isAdmin) return;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.className = 'btn btn-outline-danger btn-sm align-self-end mt-auto';
+            deleteButton.textContent = 'Delete';
+            deleteButton.setAttribute('aria-label', `Delete announcement: ${card.querySelector('.card-title').textContent}`);
+            deleteButton.addEventListener('click', () => {
+                if (!isAdmin) return;
+
+                card.querySelectorAll('img').forEach((image) => {
+                    if (image.src.startsWith('blob:')) URL.revokeObjectURL(image.src);
+                });
+                card.remove();
+                addAnnouncementButton.focus();
+            });
+            card.append(deleteButton);
+        }
+
+        announcementList.querySelectorAll('.announcement-card').forEach(addAnnouncementDeleteButton);
+    </script>
 </body>
 
 </html>
