@@ -1,0 +1,34 @@
+/*setting style for navbar*/
+.banner-wrap {
+    width: 100%;
+    background: linear-gradient(to bottom,
+            #e0ac30 0%,
+            /* gold at top */
+            #8bb9e6 35%,
+            /* light blue */
+            #141b5e 100%
+            /* navy at bottom */
+        );
+}
+
+.tbr-nav {
+    background-color: #ffffff;
+}
+
+.tbr-nav .navbar-nav .nav-link {
+    color: #0f1150;
+    font-weight: 600;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 8px 18px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.tbr-nav .navbar-nav .nav-link:hover {
+    background-color: #e9ecf8;
+}
+
+.tbr-nav .navbar-nav .nav-link.active {
+    background-color: #0f1150;
+    color: #f5b800;
+}
