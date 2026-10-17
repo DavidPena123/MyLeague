@@ -15,8 +15,16 @@
 <!-- //tasks 8 and 9 Navbar
 //setting style for navbar -->
 <style>
-    #tbr-banner {
+    .banner-wrap {
         width: 100%;
+        background: linear-gradient(to bottom,
+                #e0ac30 0%,
+                /* gold at top */
+                #8bb9e6 35%,
+                /* light blue */
+                #141b5e 100%
+                /* navy at bottom */
+            );
     }
 
     .tbr-nav {
@@ -40,6 +48,12 @@
         background-color: #0f1150;
         color: #f5b800;
     }
+
+    @media (min-width: 767.98px) {
+        .nav-bar-small {
+            display: none;
+        }
+    }
 </style>
 
 </head>
@@ -48,8 +62,8 @@
 
 
     <!-- tbr banner -->
-    <section>
-        <div class=" d-flex justify-content-center">
+    <section class="banner-wrap">
+        <div class="container-fluid d-flex justify-content-center">
             <div class="row">
                 <div class="col-12">
                     <img src="./images/tbrbanner2022.png" class="img-fluid">
@@ -57,30 +71,40 @@
             </div>
         </div>
     </section>
-    
+
     <!-- // Tasks 8 and 9 Navbar -->
-    <nav class="navbar navbar-expand-lg tbr-nav">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="images/tbrLogo.png" alt="Tracy Babe Ruth Logo" height="80">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav me-auto gap-2">
+    <section>
+        <nav class="navbar navbar-expand-lg tbr-nav">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="images/tbrLogo.png" alt="Tracy Babe Ruth Logo" height="80">
+                </a>
+
+                <!-- This keeps the home and user portal buttons on the navbar for mobile users  -->
+                <ul class="navbar-nav flex-row gap-2 d-lg-none">
                     <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">League Information</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Upcoming Games</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sponsors</a></li>
-                </ul>
-                <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">User Portal</a></li>
                 </ul>
+
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav me-auto gap-2">
+                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">League Information</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Upcoming Games</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sponsors</a></li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#">User Portal</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
