@@ -1,12 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Work Space</title>
-    </head>
 
-    <body>
-        
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Space</title>
+    <link href="styles.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <style>
+        #tbr-banner {
+            width: 100%;
+        }
+
+        .tbr-nav {
+            background-color: #ffffff;
+        }
+
+        .tbr-nav .navbar-nav .nav-link {
+            color: #0f1150;
+            font-weight: 600;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 8px 18px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+        }
+
+        .tbr-nav .navbar-nav .nav-link:hover {
+            background-color: #e9ecf8;
+        }
+
+        .tbr-nav .navbar-nav .nav-link.active {
+            background-color: #0f1150;
+            color: #f5b800;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- tbr banner -->
+    <section>
+        <div class=" d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12">
+                    <img src="./images/tbrbanner2022.png" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <img src="./images/tbrbanner2022.png" class="img-fluid" id="tbr-banner">
+
+    <nav class="navbar navbar-expand-lg tbr-nav">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/tbrLogo.png" alt="Tracy Babe Ruth Logo" height="80">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav me-auto gap-2">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">League Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Upcoming Games</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Sponsors</a></li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">User Portal</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
