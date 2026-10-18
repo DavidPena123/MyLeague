@@ -117,5 +117,100 @@
     line-height: 1.5;
 }
 
+/*Sponsors Section */
+.tbr-sponsors {
+    background-color: #f3f5fb;
+}
+
+.tbr-sponsors h2,
+#games-this-week h2 {
+    color: #0f1150;
+    font-weight: 700;
+}
+
+.sponsor-card {
+    border: 0;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.sponsor-logo {
+    min-height: 140px;
+    text-decoration: none;
+}
+
+.sponsor-logo img {
+    max-height: 110px;
+    object-fit: contain;
+}
+
+.sponsor-name {
+    color: #0f1150;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+a.sponsor-logo:hover .sponsor-name {
+    color: #e0ac30;
+}
+
+#sponsor-carousel .carousel-control-prev,
+#sponsor-carousel .carousel-control-next {
+    width: 3rem;
+    filter: invert(1);
+}
+
+
+/*Games this Week Section */
+.games-table thead th {
+    background-color: #0f1150;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.games-table td {
+    white-space: nowrap;
+}
+
+.game-cancelled td {
+    color: #6c757d;
+}
+
+.game-cancelled td:not(:last-child) {
+    text-decoration: line-through;
+}
+
+@media screen and (max-width: 575.98px) {
+    .games-table thead {
+        display: none;
+    }
+
+    .games-table tr {
+        display: block;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+        overflow: hidden;
+    }
+
+    .games-table td {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        border: 0;
+        padding: 0.35rem 0.75rem;
+    }
+
+    .games-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #0f1150;
+    }
+
+    .games-table td.games-empty {
+        display: block;
+    }
+}
+
 
 

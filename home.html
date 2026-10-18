@@ -60,8 +60,31 @@
     </section>
 
     <!-- Sponsors Section -->
-    <section>
+    <section id="sponsors" class="tbr-sponsors py-4" aria-labelledby="sponsors-heading">
+        <div class="container">
+            <div class="text-center mb-3">
+                <h2 id="sponsors-heading" class="mb-1">Our Sponsors</h2>
+                <p class="text-secondary mb-0">Their support</p>
+            </div>
 
+            <div id="sponsor-carousel" class="carousel slide" aria-label="League sponsors">
+                <div class="carousel-inner" id="sponsor-slides"></div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#sponsor-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous sponsors</span>
+                </button>      
+                <button class="carousel-control-next" type="button" data-bs-target="#sponsor-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next sponsors</span>
+                </button>                      
+            </div>
+
+            <div class="text-center mt-3">
+                <a href="#" class="btn btn-outline-primary btn-sm">View All sponsors</a>
+            </div>    
+
+        </div>       
     </section>
 
     <!-- Hero Section for registering and team pictures -->
@@ -116,6 +139,53 @@
                 </div>
             </form>
         </dialog>
+    </section>
+
+    <!--Games this Week Section-->
+    <section id="games-this-week" class="container py-4" aria-labelledby="games-heading">
+        <div class="d-flex flex-wrap justify-content-between align-items-end gap-2 mb-3">
+            <h2 id="games-heading" class="mb-0">Games this Week</h2>
+            <p id="games-week-range" class="text-secondary mb-0"></p>
+        </div>
+
+        <p class="small mb-0">
+            <i class="bi bi-telephone" aria-hidden="true"></i>
+            <!-- If the field is closed -->
+            Game status: Our Fields Hotline <a href="tel:12098316350">(209) 831-6350</a>
+        </p> 
+        
+        <div id="cancel-alert" class="alert alert-warning py-2" role="status" hidden></div>
+
+        <!-- adding the filters for games this week table-->
+         <div class="row g-2 mb-3">
+            <div class="col-12 col-md-4">
+                <label for="games-division" class="form-label visually-hidden">Division</label>
+                <select id="games-division" class="form-select">
+                    <option value="">All Divisions</option>
+                </select>
+            </div>
+            <div class="col-12 col-md-8">
+                <label for="games-search" class="form-label visually-hidden">Search games</label>
+                <input id="games-search" type="search" class="form-control" placeholder="Search by team or field">
+            </div>
+        </div>       
+
+        <div class="table-responsive">
+            <table class="table table-striped align-middle games-table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Field</th>
+                        <th scope="col">Division</th>
+                        <th scope="col">Home</th>
+                        <th scope="col">Visitors</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="games-body"></tbody>
+            </table>
+        </div>    
     </section>
 
     <!-- Summary Section -->
@@ -322,6 +392,234 @@
         }
 
         announcementList.querySelectorAll('.announcement-card').forEach(addAnnouncementDeleteButton);
+    </script>
+</body>
+
+    <!-- Script for Games this Week -->
+    <script>
+        // search by team/field. Cancelled games are marked as so (search currently doesn't work right now however).
+        // games right now are just placeholders since the backend isn't set up
+        const sampleGames = [
+            { dayOffset: 0, time: '17:30', field: 'Field 1', division: 'Majors',  home: 'Athletics',    visitors: 'Cubs',       status: 'Scheduled' },
+            { dayOffset: 0, time: '17:30', field: 'Field 2', division: 'Rookies', home: 'Nationals',    visitors: 'Mariners',   status: 'Scheduled' },
+            { dayOffset: 1, time: '18:00', field: 'Field 3', division: 'Uppers',  home: 'Lady Dodgers', visitors: 'Vipers',     status: 'Cancelled' },
+        ];
+
+        function getWeekStart() {
+            const today = new Date();
+            const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            const day = monday.getDay(); 
+            monday.setDate(monday.getDate() - (day === 0 ? 6 : day - 1));
+            return monday;
+        }
+
+        const weekStart = getWeekStart();
+
+        // The sample data is being turned into real dates, sorted by date then time
+        const games = sampleGames
+            .map(game => {
+                const date = new Date(weekStart);
+                date.setDate(weekStart.getDate() + game.dayOffset);
+                const [hours, minutes] = game.time.split(':').map(Number);
+                date.setHours(hours, minutes);
+                return { ...game, date };
+            })
+            .sort((a, b) => a.date - b.date);
+
+        const gamesBody = document.getElementById('games-body');
+        const divisionSelect = document.getElementById('games-division');
+        const searchInput = document.getElementById('games-search');
+        const cancelAlert = document.getElementById('cancel-alert');
+      
+        const weekEnd = new Date(weekStart);
+        weekEnd.setDate(weekStart.getDate() + 6);
+        const shortDate = { month: 'short', day: 'numeric' };
+        document.getElementById('games-week-range').textContent =
+            `Week of ${weekStart.toLocaleDateString('en-US', shortDate)} - ${weekEnd.toLocaleDateString('en-US', shortDate)}`;
+     
+        [...new Set(games.map(game => game.division))].forEach(division => {
+            const option = document.createElement('option');
+            option.value = division;
+            option.textContent = division;
+            divisionSelect.append(option);
+        });
+
+        // Show a warning banner listing any cancelled games
+        const cancelled = games.filter(game => game.status === 'Cancelled');
+        if (cancelled.length > 0) {
+            cancelAlert.hidden = false;
+            cancelAlert.innerHTML = '<i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> <strong>Cancelled:</strong> ';
+            cancelAlert.append(cancelled
+                .map(game => `${game.division} ${game.home} vs. ${game.visitors} at ${game.field} (${game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate })})`)
+                .join(', '));
+        }
+
+        function addCell(row, text, label = '') {
+            const cell = document.createElement('td');
+            cell.textContent = text;
+            if (label) cell.dataset.label = label;
+            row.append(cell);
+            return cell;
+        }
+
+        function renderGames() {
+            const division = divisionSelect.value;
+            const search = searchInput.value.trim().toLowerCase();
+
+            const filtered = games.filter(game => {
+                const matchesDivision = division === '' || game.division === division;
+                const matchesSearch = search === '' ||
+                    [game.home, game.visitors, game.field].some(text => text.toLowerCase().includes(search));
+                return matchesDivision && matchesSearch;
+            });
+
+            gamesBody.innerHTML = '';
+
+            if (filtered.length === 0) {
+                const row = document.createElement('tr');
+                const cell = addCell(row, 'No games match your filters.');
+                cell.colSpan = 7;
+                cell.className = 'text-center text-secondary py-4 games-empty';
+                gamesBody.append(row);
+                return;
+            }
+
+            filtered.forEach(game => {
+                const row = document.createElement('tr');
+                if (game.status === 'Cancelled') row.classList.add('game-cancelled');
+
+                addCell(row, game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate }), 'Date');
+                addCell(row, game.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), 'Time');
+                addCell(row, game.field, 'Field');
+                addCell(row, game.division, 'Division');
+                addCell(row, game.home, 'Home');
+                addCell(row, game.visitors, 'Visitors');
+
+                const badge = document.createElement('span');
+                badge.className = 'badge ' + (game.status === 'Cancelled' ? 'text-bg-danger' : 'text-bg-success');
+                badge.textContent = game.status;
+                addCell(row, '', 'Status').append(badge);
+
+                gamesBody.append(row);
+            });
+        }
+
+        divisionSelect.addEventListener('change', renderGames);
+        searchInput.addEventListener('input', renderGames);
+        renderGames();
+    </script>
+
+    <!-- Sponsor script section -->
+    <script>
+        // the sponsor list is hard-coded here, when the database is set up it should load from the server instead.    
+        const sponsors = [
+            { name: 'Kona Ice', url: 'https://www.kona-ice.com/local-site/kona-ice-of-south-san-joaquin-county/', logo: '' },
+            { name: 'Clark Pest Control', url: 'https://www.clarkpest.com/', logo: '' },
+            { name: 'Trosien Orthodontics', url: 'https://www.trosienorthodontics.com/', logo: '' },
+            { name: 'All American Sports Academy', url: 'https://allamericansportsacademy.net/', logo: '' },
+            {
+                name: "Dick's Sporting Goods",
+                url: 'https://www.dickssportinggoods.com/',
+                logo: '',
+                coupon: 'https://www.tracybaberuth.com/documents/dicks2026.pdf'
+            },
+            { name: 'Train Thought Landscapes', url: 'https://www.trainathought.com/', logo: '' }
+        ];
+
+        // shuffling so the sponsors are in a different order every time
+        function shuffle(list) {
+            const copy = [...list];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        function sponsorsPerSlide() {
+            if (window.innerWidth >= 992) return 3; 
+            if (window.innerWidth >= 576) return 2; 
+            return 1;                              
+        }
+
+        function createSponsorCard(sponsor) {
+            const col = document.createElement('div');
+            col.className = 'col';
+
+            const card = document.createElement('div');
+            card.className = 'card sponsor-card h-100 text-center';
+
+            // Logo (or name) should link
+            const main = document.createElement(sponsor.url ? 'a' : 'div');
+            main.className = 'sponsor-logo d-flex align-items-center justify-content-center p-3';
+            if (sponsor.url) {
+                main.href = sponsor.url;
+                main.target = '_blank';
+                main.rel = 'noopener noreferrer';
+            }
+
+            if (sponsor.logo) {
+                const img = document.createElement('img');
+                img.src = sponsor.logo;
+                img.alt = sponsor.name;
+                img.className = 'img-fluid';
+                main.append(img);
+            } else {
+                const name = document.createElement('span');
+                name.className = 'sponsor-name';
+                name.textContent = sponsor.name;
+                main.append(name);
+            }
+            card.append(main);
+       
+            if (sponsor.coupon) {
+                const coupon = document.createElement('a');
+                coupon.href = sponsor.coupon;
+                coupon.target = '_blank';
+                coupon.rel = 'noopener noreferrer';
+                coupon.className = 'btn btn-warning btn-sm mx-auto mb-3';
+                coupon.innerHTML = '<i class="bi bi-ticket-perforated" aria-hidden="true"></i> Get Coupon';
+                card.append(coupon);
+            }
+
+            col.append(card);
+            return col;
+        }
+
+        const sponsorCarouselEl = document.getElementById('sponsor-carousel');
+        const sponsorSlides = document.getElementById('sponsor-slides');
+        const shuffledSponsors = shuffle(sponsors);
+        let currentPerSlide = 0;
+
+        function renderSponsorCarousel() {
+            const perSlide = sponsorsPerSlide();
+            if (perSlide === currentPerSlide) return; 
+            currentPerSlide = perSlide;
+
+           
+            const existing = bootstrap.Carousel.getInstance(sponsorCarouselEl);
+            if (existing) existing.dispose();
+            sponsorSlides.innerHTML = '';
+
+            for (let i = 0; i < shuffledSponsors.length; i += perSlide) {
+                const slide = document.createElement('div');
+                slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
+
+                const row = document.createElement('div');
+                row.className = `row row-cols-${perSlide} g-3 px-5`;
+                shuffledSponsors.slice(i, i + perSlide).forEach(sponsor => {
+                    row.append(createSponsorCard(sponsor));
+                });
+
+                slide.append(row);
+                sponsorSlides.append(slide);
+            }
+         
+            new bootstrap.Carousel(sponsorCarouselEl, { interval: 4000, ride: 'carousel', pause: 'hover' });
+        }
+
+        renderSponsorCarousel();
+        window.addEventListener('resize', renderSponsorCarousel);
     </script>
 </body>
 
