@@ -7,9 +7,9 @@
     <title>Tracy Babe Ruth</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    
-      <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -70,26 +70,64 @@
             <div id="sponsor-carousel" class="carousel slide" aria-label="League sponsors">
                 <div class="carousel-inner" id="sponsor-slides"></div>
 
-                <button class="carousel-control-prev" type="button" data-bs-target="#sponsor-carousel" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#sponsor-carousel"
+                    data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous sponsors</span>
-                </button>      
-                <button class="carousel-control-next" type="button" data-bs-target="#sponsor-carousel" data-bs-slide="next">
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#sponsor-carousel"
+                    data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next sponsors</span>
-                </button>                      
+                </button>
             </div>
 
             <div class="text-center mt-3">
                 <a href="#" class="btn btn-outline-primary btn-sm">View All sponsors</a>
-            </div>    
+            </div>
 
-        </div>       
+        </div>
     </section>
 
     <!-- Hero Section for registering and team pictures -->
     <section>
-
+        <div class="container col-xxl-8 px-4 py-5">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- placeholders for team pictures for now -->
+                            <div class="carousel-item active">
+                                <img src="./images/legacy_fields.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./images/tbrLogo.png" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="./images/legacy_fields.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">Register to Play!</h1>
+                    <p class="lead">Log in or create an account to register and secure your spot.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-lg px-4 me-md-2 tracy-color">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Announcement Section -->
@@ -152,12 +190,12 @@
             <i class="bi bi-telephone" aria-hidden="true"></i>
             <!-- If the field is closed -->
             Game status: Our Fields Hotline <a href="tel:12098316350">(209) 831-6350</a>
-        </p> 
-        
+        </p>
+
         <div id="cancel-alert" class="alert alert-warning py-2" role="status" hidden></div>
 
         <!-- adding the filters for games this week table-->
-         <div class="row g-2 mb-3">
+        <div class="row g-2 mb-3">
             <div class="col-12 col-md-4">
                 <label for="games-division" class="form-label visually-hidden">Division</label>
                 <select id="games-division" class="form-select">
@@ -168,7 +206,7 @@
                 <label for="games-search" class="form-label visually-hidden">Search games</label>
                 <input id="games-search" type="search" class="form-control" placeholder="Search by team or field">
             </div>
-        </div>       
+        </div>
 
         <div class="table-responsive">
             <table class="table table-striped align-middle games-table mb-0">
@@ -185,13 +223,14 @@
                 </thead>
                 <tbody id="games-body"></tbody>
             </table>
-        </div>    
+        </div>
     </section>
 
     <!-- Summary Section -->
     <section class="container p-3">
         <div class="row-lg align-items-start">
-            <img src="./images/legacy_fields.jpg" class="img-fluid col-lg-6 float-lg-end summary-img" alt="Legacy Fields at Tracy">
+            <img src="./images/legacy_fields.jpg" class="img-fluid col-lg-6 float-lg-end summary-img"
+                alt="Legacy Fields at Tracy">
             <div class="summary pt-3 pe-5">
                 <p>Tracy Babe Ruth provides baseball and softball for players ages 4–16, with
                     opportunities to advance to district, regional, state, and World Series play.</p>
@@ -205,98 +244,93 @@
         </div>
     </section>
 
-<!-- Footer Sectiion-->
-<footer class="tbr-footer py-4 mt-5">
-    <div class="container">
-        <div class="row g-4">
+    <!-- Footer Sectiion-->
+    <footer class="tbr-footer py-4 mt-5">
+        <div class="container">
+            <div class="row g-4">
 
-            <!-- League Information -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <h5>Tracy Babe Ruth</h5>
-                <p>Providing youth baseball and softball
-                   opportunities in Tracy, California.</p>
-                <p>
-                    Legacy Fields<br>
-                    4901 N Tracy Blvd<br>
-                    Tracy, CA
-                </p>
+                <!-- League Information -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5>Tracy Babe Ruth</h5>
+                    <p>Providing youth baseball and softball
+                        opportunities in Tracy, California.</p>
+                    <p>
+                        Legacy Fields<br>
+                        4901 N Tracy Blvd<br>
+                        Tracy, CA
+                    </p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5>Contact Information</h5>
+                    <p>
+                        PO Box 1307<br>
+                        Tracy, CA 95378
+                    </p>
+                    <p>
+                        Fields Hotline:
+                        <a href="tel:+12098316350">
+                            (209) 831-6350
+                        </a>
+                    </p>
+                </div>
+
+
+                <!-- Social Media Links and Icons -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5>Follow Us</h5>
+                    <nav class="d-flex flex-wrap gap-3" aria-label="Social media">
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/TracyBabeRuth/" target="_blank" rel="noopener noreferrer"
+                            class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-facebook" aria-hidden="true"></i>
+                            Facebook
+                        </a>
+
+
+                        <!-- Instagram: Temporary homepage link -->
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                            class="d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-instagram" aria-hidden="true"></i>
+                            Instagram
+                        </a>
+
+
+
+                    </nav>
+                </div>
+
+                <!-- Sponsors Footer Section -->
+                <div class="col-12 col-md-6 col-lg-3">
+                    <h5>Our Sponsors</h5>
+                    <p>Thank you to our league sponsors!</p>
+
+
+                    <!-- League Sponsors -->
+                    <ul class="list-unstyled tbr-sponsor-list mb-0">
+                        <li>Kona Ice</li>
+                        <li>Clark Pest Control</li>
+                        <li>Trosien Orthodontics</li>
+                        <li>All American Sports Academy</li>
+                        <li>Dick's Sporting Goods</li>
+                        <li>Traina Thought Landscapes</li>
+                    </ul>
+
+                </div>
+
             </div>
 
-            <!-- Contact Information -->
-            <div class="col-12 col-md-6 col-lg-3">
-                <h5>Contact Information</h5>
-                <p>
-                    PO Box 1307<br>
-                    Tracy, CA 95378
-                </p>
-                <p>
-                    Fields Hotline:
-                    <a href="tel:+12098316350">
-                        (209) 831-6350
-                    </a>
-                </p>
-            </div>
-
-            
-<!-- Social Media Links and Icons -->
-<div class="col-12 col-md-6 col-lg-3">
-    <h5>Follow Us</h5>
-    <nav class="d-flex flex-wrap gap-3"
-         aria-label="Social media">
-
-        <!-- Facebook -->
-        <a href="https://www.facebook.com/TracyBabeRuth/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="d-inline-flex align-items-center gap-2">
-            <i class="bi bi-facebook" aria-hidden="true"></i>
-            Facebook
-        </a>
-
-        
-        <!-- Instagram: Temporary homepage link -->
-        <a href="https://www.instagram.com/" 
-            target="_blank"
-            rel="noopener noreferrer"
-            class="d-inline-flex align-items-center gap-2">
-            <i class="bi bi-instagram" aria-hidden="true"></i>
-    Instagram
-</a>
+            <hr class="my-4">
 
 
-  
-    </nav>
-</div>
-
-<!-- Sponsors Footer Section -->
-<div class="col-12 col-md-6 col-lg-3">
-    <h5>Our Sponsors</h5>
-    <p>Thank you to our league sponsors!</p>
-
-    
-<!-- League Sponsors -->
-<ul class="list-unstyled tbr-sponsor-list mb-0">
-    <li>Kona Ice</li>
-    <li>Clark Pest Control</li>
-    <li>Trosien Orthodontics</li>
-    <li>All American Sports Academy</li>
-    <li>Dick's Sporting Goods</li>
-    <li>Traina Thought Landscapes</li>
-</ul>
-
-</div>
-
+            <p class="text-center mb-0">
+                &copy; 2026 Tracy Babe Ruth.
+                All rights reserved.
+            </p>
         </div>
-
-        <hr class="my-4">
-
-
-        <p class="text-center mb-0">
-            &copy; 2026 Tracy Babe Ruth.
-            All rights reserved.
-        </p>
-    </div>
-</footer>
+    </footer>
 
 
 
@@ -395,232 +429,232 @@
     </script>
 </body>
 
-    <!-- Script for Games this Week -->
-    <script>
-        // search by team/field. Cancelled games are marked as so (search currently doesn't work right now however).
-        // games right now are just placeholders since the backend isn't set up
-        const sampleGames = [
-            { dayOffset: 0, time: '17:30', field: 'Field 1', division: 'Majors',  home: 'Athletics',    visitors: 'Cubs',       status: 'Scheduled' },
-            { dayOffset: 0, time: '17:30', field: 'Field 2', division: 'Rookies', home: 'Nationals',    visitors: 'Mariners',   status: 'Scheduled' },
-            { dayOffset: 1, time: '18:00', field: 'Field 3', division: 'Uppers',  home: 'Lady Dodgers', visitors: 'Vipers',     status: 'Cancelled' },
-        ];
+<!-- Script for Games this Week -->
+<script>
+    // search by team/field. Cancelled games are marked as so (search currently doesn't work right now however).
+    // games right now are just placeholders since the backend isn't set up
+    const sampleGames = [
+        { dayOffset: 0, time: '17:30', field: 'Field 1', division: 'Majors', home: 'Athletics', visitors: 'Cubs', status: 'Scheduled' },
+        { dayOffset: 0, time: '17:30', field: 'Field 2', division: 'Rookies', home: 'Nationals', visitors: 'Mariners', status: 'Scheduled' },
+        { dayOffset: 1, time: '18:00', field: 'Field 3', division: 'Uppers', home: 'Lady Dodgers', visitors: 'Vipers', status: 'Cancelled' },
+    ];
 
-        function getWeekStart() {
-            const today = new Date();
-            const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-            const day = monday.getDay(); 
-            monday.setDate(monday.getDate() - (day === 0 ? 6 : day - 1));
-            return monday;
-        }
+    function getWeekStart() {
+        const today = new Date();
+        const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const day = monday.getDay();
+        monday.setDate(monday.getDate() - (day === 0 ? 6 : day - 1));
+        return monday;
+    }
 
-        const weekStart = getWeekStart();
+    const weekStart = getWeekStart();
 
-        // The sample data is being turned into real dates, sorted by date then time
-        const games = sampleGames
-            .map(game => {
-                const date = new Date(weekStart);
-                date.setDate(weekStart.getDate() + game.dayOffset);
-                const [hours, minutes] = game.time.split(':').map(Number);
-                date.setHours(hours, minutes);
-                return { ...game, date };
-            })
-            .sort((a, b) => a.date - b.date);
+    // The sample data is being turned into real dates, sorted by date then time
+    const games = sampleGames
+        .map(game => {
+            const date = new Date(weekStart);
+            date.setDate(weekStart.getDate() + game.dayOffset);
+            const [hours, minutes] = game.time.split(':').map(Number);
+            date.setHours(hours, minutes);
+            return { ...game, date };
+        })
+        .sort((a, b) => a.date - b.date);
 
-        const gamesBody = document.getElementById('games-body');
-        const divisionSelect = document.getElementById('games-division');
-        const searchInput = document.getElementById('games-search');
-        const cancelAlert = document.getElementById('cancel-alert');
-      
-        const weekEnd = new Date(weekStart);
-        weekEnd.setDate(weekStart.getDate() + 6);
-        const shortDate = { month: 'short', day: 'numeric' };
-        document.getElementById('games-week-range').textContent =
-            `Week of ${weekStart.toLocaleDateString('en-US', shortDate)} - ${weekEnd.toLocaleDateString('en-US', shortDate)}`;
-     
-        [...new Set(games.map(game => game.division))].forEach(division => {
-            const option = document.createElement('option');
-            option.value = division;
-            option.textContent = division;
-            divisionSelect.append(option);
+    const gamesBody = document.getElementById('games-body');
+    const divisionSelect = document.getElementById('games-division');
+    const searchInput = document.getElementById('games-search');
+    const cancelAlert = document.getElementById('cancel-alert');
+
+    const weekEnd = new Date(weekStart);
+    weekEnd.setDate(weekStart.getDate() + 6);
+    const shortDate = { month: 'short', day: 'numeric' };
+    document.getElementById('games-week-range').textContent =
+        `Week of ${weekStart.toLocaleDateString('en-US', shortDate)} - ${weekEnd.toLocaleDateString('en-US', shortDate)}`;
+
+    [...new Set(games.map(game => game.division))].forEach(division => {
+        const option = document.createElement('option');
+        option.value = division;
+        option.textContent = division;
+        divisionSelect.append(option);
+    });
+
+    // Show a warning banner listing any cancelled games
+    const cancelled = games.filter(game => game.status === 'Cancelled');
+    if (cancelled.length > 0) {
+        cancelAlert.hidden = false;
+        cancelAlert.innerHTML = '<i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> <strong>Cancelled:</strong> ';
+        cancelAlert.append(cancelled
+            .map(game => `${game.division} ${game.home} vs. ${game.visitors} at ${game.field} (${game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate })})`)
+            .join(', '));
+    }
+
+    function addCell(row, text, label = '') {
+        const cell = document.createElement('td');
+        cell.textContent = text;
+        if (label) cell.dataset.label = label;
+        row.append(cell);
+        return cell;
+    }
+
+    function renderGames() {
+        const division = divisionSelect.value;
+        const search = searchInput.value.trim().toLowerCase();
+
+        const filtered = games.filter(game => {
+            const matchesDivision = division === '' || game.division === division;
+            const matchesSearch = search === '' ||
+                [game.home, game.visitors, game.field].some(text => text.toLowerCase().includes(search));
+            return matchesDivision && matchesSearch;
         });
 
-        // Show a warning banner listing any cancelled games
-        const cancelled = games.filter(game => game.status === 'Cancelled');
-        if (cancelled.length > 0) {
-            cancelAlert.hidden = false;
-            cancelAlert.innerHTML = '<i class="bi bi-exclamation-triangle-fill" aria-hidden="true"></i> <strong>Cancelled:</strong> ';
-            cancelAlert.append(cancelled
-                .map(game => `${game.division} ${game.home} vs. ${game.visitors} at ${game.field} (${game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate })})`)
-                .join(', '));
+        gamesBody.innerHTML = '';
+
+        if (filtered.length === 0) {
+            const row = document.createElement('tr');
+            const cell = addCell(row, 'No games match your filters.');
+            cell.colSpan = 7;
+            cell.className = 'text-center text-secondary py-4 games-empty';
+            gamesBody.append(row);
+            return;
         }
 
-        function addCell(row, text, label = '') {
-            const cell = document.createElement('td');
-            cell.textContent = text;
-            if (label) cell.dataset.label = label;
-            row.append(cell);
-            return cell;
+        filtered.forEach(game => {
+            const row = document.createElement('tr');
+            if (game.status === 'Cancelled') row.classList.add('game-cancelled');
+
+            addCell(row, game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate }), 'Date');
+            addCell(row, game.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), 'Time');
+            addCell(row, game.field, 'Field');
+            addCell(row, game.division, 'Division');
+            addCell(row, game.home, 'Home');
+            addCell(row, game.visitors, 'Visitors');
+
+            const badge = document.createElement('span');
+            badge.className = 'badge ' + (game.status === 'Cancelled' ? 'text-bg-danger' : 'text-bg-success');
+            badge.textContent = game.status;
+            addCell(row, '', 'Status').append(badge);
+
+            gamesBody.append(row);
+        });
+    }
+
+    divisionSelect.addEventListener('change', renderGames);
+    searchInput.addEventListener('input', renderGames);
+    renderGames();
+</script>
+
+<!-- Sponsor script section -->
+<script>
+    // the sponsor list is hard-coded here, when the database is set up it should load from the server instead.    
+    const sponsors = [
+        { name: 'Kona Ice', url: 'https://www.kona-ice.com/local-site/kona-ice-of-south-san-joaquin-county/', logo: '' },
+        { name: 'Clark Pest Control', url: 'https://www.clarkpest.com/', logo: '' },
+        { name: 'Trosien Orthodontics', url: 'https://www.trosienorthodontics.com/', logo: '' },
+        { name: 'All American Sports Academy', url: 'https://allamericansportsacademy.net/', logo: '' },
+        {
+            name: "Dick's Sporting Goods",
+            url: 'https://www.dickssportinggoods.com/',
+            logo: '',
+            coupon: 'https://www.tracybaberuth.com/documents/dicks2026.pdf'
+        },
+        { name: 'Train Thought Landscapes', url: 'https://www.trainathought.com/', logo: '' }
+    ];
+
+    // shuffling so the sponsors are in a different order every time
+    function shuffle(list) {
+        const copy = [...list];
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
+    function sponsorsPerSlide() {
+        if (window.innerWidth >= 992) return 3;
+        if (window.innerWidth >= 576) return 2;
+        return 1;
+    }
+
+    function createSponsorCard(sponsor) {
+        const col = document.createElement('div');
+        col.className = 'col';
+
+        const card = document.createElement('div');
+        card.className = 'card sponsor-card h-100 text-center';
+
+        // Logo (or name) should link
+        const main = document.createElement(sponsor.url ? 'a' : 'div');
+        main.className = 'sponsor-logo d-flex align-items-center justify-content-center p-3';
+        if (sponsor.url) {
+            main.href = sponsor.url;
+            main.target = '_blank';
+            main.rel = 'noopener noreferrer';
         }
 
-        function renderGames() {
-            const division = divisionSelect.value;
-            const search = searchInput.value.trim().toLowerCase();
+        if (sponsor.logo) {
+            const img = document.createElement('img');
+            img.src = sponsor.logo;
+            img.alt = sponsor.name;
+            img.className = 'img-fluid';
+            main.append(img);
+        } else {
+            const name = document.createElement('span');
+            name.className = 'sponsor-name';
+            name.textContent = sponsor.name;
+            main.append(name);
+        }
+        card.append(main);
 
-            const filtered = games.filter(game => {
-                const matchesDivision = division === '' || game.division === division;
-                const matchesSearch = search === '' ||
-                    [game.home, game.visitors, game.field].some(text => text.toLowerCase().includes(search));
-                return matchesDivision && matchesSearch;
+        if (sponsor.coupon) {
+            const coupon = document.createElement('a');
+            coupon.href = sponsor.coupon;
+            coupon.target = '_blank';
+            coupon.rel = 'noopener noreferrer';
+            coupon.className = 'btn btn-warning btn-sm mx-auto mb-3';
+            coupon.innerHTML = '<i class="bi bi-ticket-perforated" aria-hidden="true"></i> Get Coupon';
+            card.append(coupon);
+        }
+
+        col.append(card);
+        return col;
+    }
+
+    const sponsorCarouselEl = document.getElementById('sponsor-carousel');
+    const sponsorSlides = document.getElementById('sponsor-slides');
+    const shuffledSponsors = shuffle(sponsors);
+    let currentPerSlide = 0;
+
+    function renderSponsorCarousel() {
+        const perSlide = sponsorsPerSlide();
+        if (perSlide === currentPerSlide) return;
+        currentPerSlide = perSlide;
+
+
+        const existing = bootstrap.Carousel.getInstance(sponsorCarouselEl);
+        if (existing) existing.dispose();
+        sponsorSlides.innerHTML = '';
+
+        for (let i = 0; i < shuffledSponsors.length; i += perSlide) {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
+
+            const row = document.createElement('div');
+            row.className = `row row-cols-${perSlide} g-3 px-5`;
+            shuffledSponsors.slice(i, i + perSlide).forEach(sponsor => {
+                row.append(createSponsorCard(sponsor));
             });
 
-            gamesBody.innerHTML = '';
-
-            if (filtered.length === 0) {
-                const row = document.createElement('tr');
-                const cell = addCell(row, 'No games match your filters.');
-                cell.colSpan = 7;
-                cell.className = 'text-center text-secondary py-4 games-empty';
-                gamesBody.append(row);
-                return;
-            }
-
-            filtered.forEach(game => {
-                const row = document.createElement('tr');
-                if (game.status === 'Cancelled') row.classList.add('game-cancelled');
-
-                addCell(row, game.date.toLocaleDateString('en-US', { weekday: 'short', ...shortDate }), 'Date');
-                addCell(row, game.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }), 'Time');
-                addCell(row, game.field, 'Field');
-                addCell(row, game.division, 'Division');
-                addCell(row, game.home, 'Home');
-                addCell(row, game.visitors, 'Visitors');
-
-                const badge = document.createElement('span');
-                badge.className = 'badge ' + (game.status === 'Cancelled' ? 'text-bg-danger' : 'text-bg-success');
-                badge.textContent = game.status;
-                addCell(row, '', 'Status').append(badge);
-
-                gamesBody.append(row);
-            });
+            slide.append(row);
+            sponsorSlides.append(slide);
         }
 
-        divisionSelect.addEventListener('change', renderGames);
-        searchInput.addEventListener('input', renderGames);
-        renderGames();
-    </script>
+        new bootstrap.Carousel(sponsorCarouselEl, { interval: 4000, ride: 'carousel', pause: 'hover' });
+    }
 
-    <!-- Sponsor script section -->
-    <script>
-        // the sponsor list is hard-coded here, when the database is set up it should load from the server instead.    
-        const sponsors = [
-            { name: 'Kona Ice', url: 'https://www.kona-ice.com/local-site/kona-ice-of-south-san-joaquin-county/', logo: '' },
-            { name: 'Clark Pest Control', url: 'https://www.clarkpest.com/', logo: '' },
-            { name: 'Trosien Orthodontics', url: 'https://www.trosienorthodontics.com/', logo: '' },
-            { name: 'All American Sports Academy', url: 'https://allamericansportsacademy.net/', logo: '' },
-            {
-                name: "Dick's Sporting Goods",
-                url: 'https://www.dickssportinggoods.com/',
-                logo: '',
-                coupon: 'https://www.tracybaberuth.com/documents/dicks2026.pdf'
-            },
-            { name: 'Train Thought Landscapes', url: 'https://www.trainathought.com/', logo: '' }
-        ];
-
-        // shuffling so the sponsors are in a different order every time
-        function shuffle(list) {
-            const copy = [...list];
-            for (let i = copy.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [copy[i], copy[j]] = [copy[j], copy[i]];
-            }
-            return copy;
-        }
-
-        function sponsorsPerSlide() {
-            if (window.innerWidth >= 992) return 3; 
-            if (window.innerWidth >= 576) return 2; 
-            return 1;                              
-        }
-
-        function createSponsorCard(sponsor) {
-            const col = document.createElement('div');
-            col.className = 'col';
-
-            const card = document.createElement('div');
-            card.className = 'card sponsor-card h-100 text-center';
-
-            // Logo (or name) should link
-            const main = document.createElement(sponsor.url ? 'a' : 'div');
-            main.className = 'sponsor-logo d-flex align-items-center justify-content-center p-3';
-            if (sponsor.url) {
-                main.href = sponsor.url;
-                main.target = '_blank';
-                main.rel = 'noopener noreferrer';
-            }
-
-            if (sponsor.logo) {
-                const img = document.createElement('img');
-                img.src = sponsor.logo;
-                img.alt = sponsor.name;
-                img.className = 'img-fluid';
-                main.append(img);
-            } else {
-                const name = document.createElement('span');
-                name.className = 'sponsor-name';
-                name.textContent = sponsor.name;
-                main.append(name);
-            }
-            card.append(main);
-       
-            if (sponsor.coupon) {
-                const coupon = document.createElement('a');
-                coupon.href = sponsor.coupon;
-                coupon.target = '_blank';
-                coupon.rel = 'noopener noreferrer';
-                coupon.className = 'btn btn-warning btn-sm mx-auto mb-3';
-                coupon.innerHTML = '<i class="bi bi-ticket-perforated" aria-hidden="true"></i> Get Coupon';
-                card.append(coupon);
-            }
-
-            col.append(card);
-            return col;
-        }
-
-        const sponsorCarouselEl = document.getElementById('sponsor-carousel');
-        const sponsorSlides = document.getElementById('sponsor-slides');
-        const shuffledSponsors = shuffle(sponsors);
-        let currentPerSlide = 0;
-
-        function renderSponsorCarousel() {
-            const perSlide = sponsorsPerSlide();
-            if (perSlide === currentPerSlide) return; 
-            currentPerSlide = perSlide;
-
-           
-            const existing = bootstrap.Carousel.getInstance(sponsorCarouselEl);
-            if (existing) existing.dispose();
-            sponsorSlides.innerHTML = '';
-
-            for (let i = 0; i < shuffledSponsors.length; i += perSlide) {
-                const slide = document.createElement('div');
-                slide.className = 'carousel-item' + (i === 0 ? ' active' : '');
-
-                const row = document.createElement('div');
-                row.className = `row row-cols-${perSlide} g-3 px-5`;
-                shuffledSponsors.slice(i, i + perSlide).forEach(sponsor => {
-                    row.append(createSponsorCard(sponsor));
-                });
-
-                slide.append(row);
-                sponsorSlides.append(slide);
-            }
-         
-            new bootstrap.Carousel(sponsorCarouselEl, { interval: 4000, ride: 'carousel', pause: 'hover' });
-        }
-
-        renderSponsorCarousel();
-        window.addEventListener('resize', renderSponsorCarousel);
-    </script>
+    renderSponsorCarousel();
+    window.addEventListener('resize', renderSponsorCarousel);
+</script>
 </body>
 
 </html>

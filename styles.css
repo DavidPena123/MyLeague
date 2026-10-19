@@ -212,5 +212,20 @@ a.sponsor-logo:hover .sponsor-name {
     }
 }
 
+/* register button */
+.tracy-color {
+    background-color: #0f1150;
+    color: #f5b800;
+}
 
+.tracy-color:hover {
+    background-color: #1b1d6b;
+    color: #ffd04a;
+}
 
+/* carousel images of the team */
+.carousel-item img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
