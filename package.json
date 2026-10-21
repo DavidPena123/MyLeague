@@ -1,0 +1,39 @@
+{
+  "name": "myleague",
+  "version": "1.0.0",
+  "description": "Tracy Babe Ruth is a non-profit youth recreational baseball and softball league serving over 300 players, ages 3-16. The League organizes player registration, teams, games, practices, and field assignments. The league is supported by board members, team managers, coaches, umpires, parents, volunteers, and sponsors.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "npm run build --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidPena123/MyLeague.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/DavidPena123/MyLeague/issues"
+  },
+  "homepage": "https://github.com/DavidPena123/MyLeague#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.13.2",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6",
+    "nodemon": "^1.19.4"
+  },
+  "allowScripts": {
+    "nodemon@1.19.4": true
+  }
+}
