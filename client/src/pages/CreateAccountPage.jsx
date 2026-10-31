@@ -1,5 +1,6 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
@@ -26,54 +27,59 @@ function CreateAccountPage() {
     return (
         <Container fluid="md">
             <Row className="justify-content-center">
-                <Card className="text-center">
-                    <Card.Header></Card.Header>
-                    <Card.Body>
-                        <Card.Title>Create An Account</Card.Title>
+                <Col xs={12} sm={10} md={8} lg={5}>
+                    <Card className="text-center">
+                        <Card.Header></Card.Header>
+                        <Card.Body>
+                            <Card.Title>Create An Account</Card.Title>
 
-                        <Form onSubmit={handleSubmit}>
+                            <Form onSubmit={handleSubmit}>
 
-                            <Form.Group className="mb-3 pt-5 px-5" controlId="formGroupEmail">
-                                <Form.Label>Email address</Form.Label>
-                                <Form.Control
-                                    type="email"
-                                    name="email"
-                                    autoComplete="email"
-                                    placeholder="Enter email"
-                                    value={form.email}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                                <Form.Group className="mb-3 pt-5 px-5" controlId="formGroupEmail">
+                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Control
+                                        size="lg"
+                                        type="email"
+                                        name="email"
+                                        autoComplete="email"
+                                        placeholder="Enter email"
+                                        value={form.email}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group className="mb-3 px-5" controlId="formGroupPassword">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    autoComplete="new-password"
-                                    placeholder="Password"
-                                    value={form.password}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control
+                                        size="lg"
+                                        type="password"
+                                        name="password"
+                                        autoComplete="new-password"
+                                        placeholder="Password"
+                                        value={form.password}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Group>
 
-                            <Form.Group className="mb-3 px-5" controlId="formGroupConfirmPassword">
-                                <Form.Label>Confirm Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="confirmPassword"
-                                    autoComplete="new-password"
-                                    placeholder="Confirm Password"
-                                    value={form.confirmPassword}
-                                    onChange={handleChange}
-                                />
-                            </Form.Group>
+                                <Form.Group className="mb-3" controlId="formGroupConfirmPassword">
+                                    <Form.Label>Confirm Password</Form.Label>
+                                    <Form.Control
+                                        size="lg"
+                                        type="password"
+                                        name="confirmPassword"
+                                        autoComplete="new-password"
+                                        placeholder="Confirm Password"
+                                        value={form.confirmPassword}
+                                        onChange={handleChange}
+                                    />
+                                </Form.Group>
 
-                            <Button type="submit" variant="primary">Create Account</Button>
-                        </Form>
-                    </Card.Body>
-                    <Card.Footer className="text-muted"></Card.Footer>
-                </Card>
+                                <Button type="submit" variant="primary" size="lg">Create Account</Button>
+                            </Form>
+                        </Card.Body>
+                        <Card.Footer className="text-muted"></Card.Footer>
+                    </Card>
+                </Col>
             </Row>
         </Container>
     );
