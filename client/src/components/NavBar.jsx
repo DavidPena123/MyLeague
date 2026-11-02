@@ -25,6 +25,7 @@ function NavBar() {
                         <Nav.Link href="#">Upcoming Games</Nav.Link>
                         <Nav.Link href="#">About Us</Nav.Link>
                         <Nav.Link href="#">Sponsors</Nav.Link>
+                        <Nav.Link as={NavLink} to="/create-account">Create Account</Nav.Link>
                     </Nav>
                     <Nav>
                         <Nav.Link href="#">User Portal</Nav.Link>
