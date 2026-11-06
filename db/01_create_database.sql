@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS tracy_babe_ruth CHARACTER SET utf8mb4;

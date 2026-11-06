@@ -1,10 +1,9 @@
 /*
     How to run:
     1. open a terminal in the project directory
-    2. run `node db/tests/add_test_users.js`
+    2. run `node db/dummy_data/01_seed_users.js`
 */
 
-const pool = require("../../db.js");
 const { hashPassword } = require("../../utils/Password.js");
 
 const testUsers = [
@@ -100,27 +99,37 @@ const testUsers = [
     },
 ];
 
-async function addTestUsers() {
+async function addTestUsers(connection) {
+    added = 0;
     for (const user of testUsers) {
-        const [existing] = await pool.execute(
+        const [existing] = await connection.execute(
             "SELECT 1 FROM `user` WHERE email = ? LIMIT 1",
             [user.email]
         );
         if (existing.length > 0) {
-            console.log(`Skipped existing user: ${user.email}`);
             continue;
         }
 
         const passwordHash = await hashPassword(user.password);
-        await pool.execute(
+        await connection.execute(
             "INSERT INTO `user` (email, password_hash, first_name, last_name) VALUES (?, ?, ?, ?)",
             [user.email, passwordHash, user.firstName, user.lastName]
         );
-        console.log(`Added test user: ${user.email}`);
+        added ++;
     }
+    console.log(`Added ${added} existing users.`);
 }
 
-addTestUsers().catch((error) => {
-    console.error("Error adding test users:", error.code || error.name);
-})
-    .finally(() => pool.end());
+// Importing this module does not open or close a database connection.
+module.exports = { addTestUsers, seed: addTestUsers };
+
+// Keep the seeder usable as a standalone command.
+if (require.main === module) {
+    const pool = require("../../db.js");
+    addTestUsers(pool)
+        .catch((error) => {
+            console.error("Error adding test users:", error.code || error.name);
+            process.exitCode = 1;
+        })
+        .finally(() => pool.end());
+}

@@ -20,13 +20,3 @@ PREPARE stmt FROM @add_fk;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
 -- ON DELETE SET NULL: if a team is deleted, its players stay in the database without a team (a player can exist without a team).
-
--- Putting the sample players on teams.
--- Each player who doesn't have a team yet goes on the first team in their own division, 
-UPDATE players AS p
-SET p.team_id = (
-    SELECT MIN(t.id)
-    FROM teams AS t
-    WHERE t.division_id = p.division_id
-)
-WHERE p.team_id IS NULL;
