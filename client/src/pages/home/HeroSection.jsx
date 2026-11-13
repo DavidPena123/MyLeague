@@ -1,4 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 function HeroSection() {
     return (
@@ -27,9 +29,7 @@ function HeroSection() {
                             Log in or create an account to register and secure your spot.
                         </p>
                         <div className="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button type="button" className="btn btn-lg px-4 me-md-2 tracy-color">
-                                Register
-                            </button>
+                            <Button as={Link} to='/login' className="btn btn-lg px-4 me-md-2 tracy-color">Register</Button>
                         </div>
                     </div>
                 </div>
