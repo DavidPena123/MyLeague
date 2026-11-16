@@ -1,6 +1,6 @@
 USE tracy_babe_ruth;
 
----  store announcements 
+-- Store announcements
 
 
 

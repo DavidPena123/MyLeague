@@ -10,7 +10,7 @@ WHERE NOT EXISTS (
 );
 
 
---placeholder just for demonstration when completed
+-- Placeholder just for demonstration when completed
 INSERT INTO announcements (title, message, created_at, author_id)
 SELECT s.title, s.message, s.created_at, u.id
 FROM (
