@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage.jsx";
 import CreateAccountPage from "./pages/CreateAccountPage.jsx";
 import LeagueInformationPage from "./pages/LeagueInformationPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import BoardPage from "./pages/BoardPage.jsx";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           path="/league-information"
           element={<LeagueInformationPage />}
         />
+        <Route path="/board" element={<BoardPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Route>
     </Routes>

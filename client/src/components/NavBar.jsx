@@ -23,7 +23,7 @@ function NavBar() {
                         <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
                         <Nav.Link as={NavLink} to="/league-information">League Information</Nav.Link>
                         <Nav.Link href="#">Upcoming Games</Nav.Link>
-                        <Nav.Link href="#">About Us</Nav.Link>
+                        <Nav.Link as={NavLink} to="/board">Board Members</Nav.Link>
                         <Nav.Link href="#">Sponsors</Nav.Link>
                         <Nav.Link as={NavLink} to="/create-account">Create Account</Nav.Link>
                     </Nav>
