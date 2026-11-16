@@ -21,7 +21,7 @@ function NavBar() {
                 <Navbar.Collapse id="mainNav">
                     <Nav className="me-auto gap-2">
                         <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
-                        <Nav.Link href="#">League Information</Nav.Link>
+                        <Nav.Link as={NavLink} to="/league-information">League Information</Nav.Link>
                         <Nav.Link href="#">Upcoming Games</Nav.Link>
                         <Nav.Link href="#">About Us</Nav.Link>
                         <Nav.Link href="#">Sponsors</Nav.Link>
