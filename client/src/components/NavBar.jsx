@@ -14,7 +14,7 @@ function NavBar() {
                 {/* Keeps the Home and User Portal buttons on the navbar for mobile users */}
                 <Nav className="flex-row gap-2 d-lg-none">
                     <Nav.Link as={NavLink} to="/" end>Home</Nav.Link>
-                    <Nav.Link href="#">User Portal</Nav.Link>
+                    <Nav.Link as={NavLink} to="/login">User Portal</Nav.Link>
                 </Nav>
 
                 <Navbar.Toggle aria-controls="mainNav" />
@@ -25,9 +25,10 @@ function NavBar() {
                         <Nav.Link href="#">Upcoming Games</Nav.Link>
                         <Nav.Link href="#">About Us</Nav.Link>
                         <Nav.Link href="#">Sponsors</Nav.Link>
+                        <Nav.Link as={NavLink} to="/create-account">Create Account</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#">User Portal</Nav.Link>
+                        <Nav.Link as={NavLink} to="/login">User Portal</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
