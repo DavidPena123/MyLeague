@@ -4,44 +4,41 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import Alert from 'react-bootstrap/Alert';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CreateAccountPage() {
 
-    // 1. One object holds everything the user types
-    const [form, setForm] = useState({ email: "", password: "", confirmPassword: "" })
-
-    //using for email validation
+    const [form, setForm] = useState({ email: "", password: "", confirmPassword: "" });
     const [errors, setErrors] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const submissionInProgress = useRef(false);
+    const navigate = useNavigate();
 
-    // The three password rules, recalculated on every render
-    const rules = [
-        { label: "At least 8 characters", met: form.password.length >= 8 },
-        { label: "Contains a letter", met: /[A-Za-z]/.test(form.password) },
-        { label: "Contains a number", met: /\d/.test(form.password) },
-    ];
-
-    // 2. Runs on every keystroke, in any field (updates the object)
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-        setErrors({ ...errors, [name]: "" });
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setForm((previousForm) => ({ ...previousForm, [name]: value }));
+        setErrors((previousErrors) => ({ ...previousErrors, [name]: "", submit: "" }));
     };
 
+    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    // 3. Runs when the form is submitted
-    const handleSubmit = (e) => {
-        e.preventDefault(); // stops the browser from reloading the page
+        if (submissionInProgress.current) {
+            return;
+        }
 
-        const email = form.email.trim();
+        const email = form.email.trim().toLowerCase();
         const newErrors = {};
 
-        if (!/^\S+@\S+\.\S+$/.test(email)) {
+        if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             newErrors.email = "Please enter a valid email address.";
         }
 
-        if (!rules.every((rule) => rule.met)) {
-            newErrors.password = "Password doesn't meet all the requirements.";
+        if (!(form.password.length >= 8 && form.password.length <= 128)) {
+            newErrors.password = "Use a password between 8 and 128 characters.";
         }
 
         if (form.confirmPassword !== form.password) {
@@ -50,10 +47,42 @@ function CreateAccountPage() {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-            return; // stop before anything is sent
+            return;
         }
 
-        console.log({ ...form, email }); // temporary: check the values in the console
+        submissionInProgress.current = true;
+        setIsSubmitting(true);
+        setErrors({});
+
+        try {
+            const response = await fetch('/api/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password: form.password }),
+            });
+
+            if (response.status !== 201) {
+                const result = await response.json().catch(() => null);
+                const message = typeof result?.message === 'string' && result.message
+                    ? result.message
+                    : 'Unable to create your account. Please try again later.';
+
+                if (response.status === 409) {
+                    setErrors({ email: message });
+                } else {
+                    setErrors({ submit: message });
+                }
+                return;
+            }
+
+            setForm({ email, password: '', confirmPassword: '' });
+            navigate('/verify-email', { replace: true, state: { email } });
+        } catch {
+            setErrors({ submit: 'Unable to reach the server. Check your connection and try again.' });
+        } finally {
+            submissionInProgress.current = false;
+            setIsSubmitting(false);
+        }
     };
 
 
@@ -66,7 +95,11 @@ function CreateAccountPage() {
                         <Card.Body>
                             <Card.Title>Create An Account</Card.Title>
 
-                            <Form onSubmit={handleSubmit} noValidate>
+                            {errors.submit && (
+                                <Alert variant="danger" role="alert">{errors.submit}</Alert>
+                            )}
+
+                            <Form onSubmit={handleSubmit} noValidate aria-busy={isSubmitting}>
 
                                 <Form.Group className="mb-3" controlId="formGroupEmail">
                                     <Form.Label>Email address</Form.Label>
@@ -75,6 +108,8 @@ function CreateAccountPage() {
                                         type="email"
                                         name="email"
                                         autoComplete="email"
+                                        maxLength={254}
+                                        disabled={isSubmitting}
                                         placeholder="Enter email"
                                         value={form.email}
                                         onChange={handleChange}
@@ -92,6 +127,9 @@ function CreateAccountPage() {
                                         type="password"
                                         name="password"
                                         autoComplete="new-password"
+                                        minLength={8}
+                                        maxLength={128}
+                                        disabled={isSubmitting}
                                         placeholder="Password"
                                         value={form.password}
                                         onChange={handleChange}
@@ -100,16 +138,9 @@ function CreateAccountPage() {
                                     <Form.Control.Feedback type="invalid">
                                         {errors.password}
                                     </Form.Control.Feedback>
-                                    <ul className="list-unstyled text-start small mt-2 mb-0">
-                                        {rules.map((rule) => (
-                                            <li
-                                                key={rule.label}
-                                                className={rule.met ? "text-success" : "text-muted"}
-                                            >
-                                                {rule.label}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                    <p className="text-start small mt-2 mb-0 text-muted">
+                                        Between 8 and 128 characters
+                                    </p>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3" controlId="formGroupConfirmPassword">
@@ -119,6 +150,8 @@ function CreateAccountPage() {
                                         type="password"
                                         name="confirmPassword"
                                         autoComplete="new-password"
+                                        maxLength={128}
+                                        disabled={isSubmitting}
                                         placeholder="Confirm Password"
                                         value={form.confirmPassword}
                                         onChange={handleChange}
@@ -129,7 +162,9 @@ function CreateAccountPage() {
                                     </Form.Control.Feedback>
                                 </Form.Group>
 
-                                <Button type="submit" variant="primary" size="lg">Create Account</Button>
+                                <Button type="submit" variant="primary" size="lg" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Creating Account...' : 'Create Account'}
+                                </Button>
                             </Form>
                         </Card.Body>
                         <Card.Footer className="text-muted"></Card.Footer>

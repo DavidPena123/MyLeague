@@ -9,6 +9,7 @@ app.use(express.json());
 
 // API routes. Each new feature adds one line here.
 app.use("/api/health", require("./routes/health.js"));
+app.use("/api/auth", require("./routes/registration.js"));
 
 // Unknown /api URLs get JSON, not a web page.
 app.use("/api", (req, res) => {

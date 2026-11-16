@@ -5,11 +5,12 @@ CREATE TABLE IF NOT EXISTS user (
     email VARCHAR(254) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
 
-    first_name VARCHAR(64) NOT NULL,
-    last_name VARCHAR(64) NOT NULL,
+    first_name VARCHAR(64),
+    last_name VARCHAR(64),
     phone VARCHAR(32),
 
     role VARCHAR(32) NOT NULL DEFAULT 'PARENT',
+    email_verified BOOLEAN NOT NULL DEFAULT FALSE,
     is_active BOOLEAN NOT NULL DEFAULT TRUE
 
 ) ENGINE=InnoDB
